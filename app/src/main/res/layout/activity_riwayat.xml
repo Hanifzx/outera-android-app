@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    tools:context=".RiwayatActivity">
+
+    <!-- Header Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@color/surface_container_low">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="-0.02"
+            android:text="Riwayat Sewa"
+            android:textColor="@color/on_surface"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- List of History (RecyclerView selected per user feedback) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRiwayatSewa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/activity_dashboard" /> 
+        <!-- Note: listitem is mock, normally would use a custom history item layout -->
+
+</LinearLayout>

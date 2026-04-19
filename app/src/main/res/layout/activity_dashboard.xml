@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".DashboardActivity">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/tvDashboardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="-0.02"
+        android:text="Outera Dashboard"
+        android:textColor="@color/on_surface"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- Summary Card (No-Line Rule: using surface_container_lowest on surface) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:cardBackgroundColor="@color/surface_container_lowest"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.05"
+                android:text="STATUS HARI INI"
+                android:textColor="@color/outline"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvActiveRentals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="12 Penyewaan Aktif"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Navigation Actions -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:letterSpacing="0.05"
+        android:text="MENU UTAMA"
+        android:textColor="@color/outline"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:useDefaultMargins="true">
+
+        <!-- Button Katalog -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKatalog"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary_container"
+            android:text="Katalog\nAlat"
+            android:textColor="@color/on_primary"
+            app:cornerRadius="12dp" />
+
+        <!-- Button Sewa -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSewa"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary_container"
+            android:text="Sewa\nBarang"
+            android:textColor="@color/on_primary"
+            app:cornerRadius="12dp" />
+
+        <!-- Button Riwayat -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRiwayat"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/secondary_container"
+            android:text="Riwayat\nSewa"
+            android:textColor="@color/primary"
+            app:cornerRadius="12dp" />
+
+        <!-- Button Laporan -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLaporan"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/secondary_container"
+            android:text="Laporan\nPendapatan"
+            android:textColor="@color/primary"
+            app:cornerRadius="12dp" />
+
+    </GridLayout>
+
+</LinearLayout>

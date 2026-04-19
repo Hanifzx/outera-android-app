@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    tools:context=".KatalogActivity">
+
+    <!-- Header & Search Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@color/surface_container_low">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="-0.02"
+            android:text="Katalog Alat"
+            android:textColor="@color/on_surface"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!-- Search Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/surface_container_highest"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:boxStrokeColor="@color/primary"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearchKatalog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cari tenda, carrier, dll..."
+                android:textColor="@color/on_surface"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- List of Items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvKatalogBarang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/activity_dashboard" /> 
+        <!-- Note: listitem preview uses a random layout, in reality a custom item layout should be created -->
+
+</LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".LaporanActivity">
+
+    <!-- Header Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="-0.02"
+        android:text="Laporan Pendapatan"
+        android:textColor="@color/on_surface"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- Summary Card (Total Pendapatan) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/surface_container_lowest"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.05"
+                android:text="TOTAL PENDAPATAN BULAN INI"
+                android:textColor="@color/outline"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotalPendapatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Rp 4.500.000"
+                android:textColor="@color/primary"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Summary Card (Total Barang Disewa) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:cardBackgroundColor="@color/surface_container_lowest"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.05"
+                android:text="TOTAL BARANG DISEWA"
+                android:textColor="@color/outline"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotalDisewa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="45 Item"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:letterSpacing="0.05"
+        android:text="TRANSAKSI TERBARU"
+        android:textColor="@color/outline"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!-- List of Recent Transactions -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLaporanTransaksi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false" />
+
+</LinearLayout>
