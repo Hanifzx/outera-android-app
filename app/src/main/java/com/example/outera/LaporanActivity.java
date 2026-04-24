@@ -1,8 +1,11 @@
 package com.example.outera;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -10,9 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class LaporanActivity extends AppCompatActivity {
@@ -26,99 +30,113 @@ public class LaporanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laporan);
 
-        // Inisialisasi views
         tvTotalPendapatan = findViewById(R.id.tvTotalPendapatan);
         tvTotalDisewa = findViewById(R.id.tvTotalDisewa);
         llGraphContainer = findViewById(R.id.llGraphContainer);
+        
+        NavigationUtils.setupBottomNav(this, R.id.nav_laporan);
 
-        muatDataDanTampilkanGrafik();
+        loadDataAndShowGraph();
     }
 
-    private void muatDataDanTampilkanGrafik() {
+    private void loadDataAndShowGraph() {
         HashMap<String, Integer> itemCounts = new HashMap<>();
-        int totalBarangDisewa = 0;
+        long totalPendapatan = 0;
 
         try {
-            FileInputStream fis = openFileInput("transaksi.txt");
+            FileInputStream fis = openFileInput("transaksi_history.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             String line;
-
             while ((line = reader.readLine()) != null) {
-                // Format: ID|Nama|Alat|Durasi(Jumlah)|Total
                 String[] parts = line.split("\\|");
-                if (parts.length >= 4) {
-                    String namaAlat = parts[2];
-                    int jumlah = 0;
+                if (parts.length >= 8) {
                     try {
-                        jumlah = Integer.parseInt(parts[3]);
-                    } catch (NumberFormatException e) {
-                        // Ignore parse errors for quantity
-                    }
-                    
-                    itemCounts.put(namaAlat, itemCounts.getOrDefault(namaAlat, 0) + jumlah);
-                    totalBarangDisewa += jumlah;
+                        String namaAlat = parts[2];
+                        int jumlah = Integer.parseInt(parts[3]);
+                        long totalBiaya = Long.parseLong(parts[7]);
+
+                        totalPendapatan += totalBiaya;
+                        itemCounts.put(namaAlat, itemCounts.getOrDefault(namaAlat, 0) + jumlah);
+                    } catch (NumberFormatException e) {}
                 }
             }
             reader.close();
             fis.close();
-            
-        } catch (FileNotFoundException e) {
-            // File belum ada, biarkan kosong atau tampilkan info
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
 
-        // Update Total Barang Disewa TextView
-        tvTotalDisewa.setText(totalBarangDisewa + " Item");
+        int totalBarangAktifDisewa = 0;
+        try {
+            FileInputStream fis = openFileInput("transaksi.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                if (parts.length >= 8) {
+                    try {
+                        int jumlah = Integer.parseInt(parts[3]);
+                        totalBarangAktifDisewa += jumlah;
+                    } catch (NumberFormatException e) {}
+                }
+            }
+            reader.close();
+            fis.close();
+        } catch (Exception e) {}
 
-        // Konversi 50dp ke pixels
-        int scalePx = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
-        
-        int heightPx = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
+        tvTotalDisewa.setText(totalBarangAktifDisewa + " Item");
 
-        int marginPx = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+        tvTotalPendapatan.setText(formatRupiah.format(totalPendapatan));
 
-        // Membuat grafik batang
+        int scalePx = dpToPx(30);
+        int barHeightPx = dpToPx(32);
+        int marginPx = dpToPx(8);
+        int cornerPx = dpToPx(6);
+
+        llGraphContainer.removeAllViews();
+
         for (Map.Entry<String, Integer> entry : itemCounts.entrySet()) {
             String namaAlat = entry.getKey();
-            int jumlah = entry.getValue();
+            int jumlahSewa = entry.getValue();
 
-            // 1. TextView untuk nama alat
             TextView tvAlat = new TextView(this);
-            tvAlat.setText(namaAlat + " (" + jumlah + ")");
+            tvAlat.setText(namaAlat + " (" + jumlahSewa + ")");
             tvAlat.setTextColor(Color.parseColor("#1A1C1C"));
-            tvAlat.setTextSize(14f);
-            
+            tvAlat.setTextSize(12f);
+            tvAlat.setTypeface(null, Typeface.BOLD);
+
             LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            textParams.setMargins(0, marginPx, 0, 4);
+            textParams.setMargins(0, marginPx, 0, dpToPx(4));
             tvAlat.setLayoutParams(textParams);
-            
-            // 2. View untuk batang grafik
+
             View barView = new View(this);
-            barView.setBackgroundColor(Color.parseColor("#4B5320")); // Warna Hijau Army
-            
-            int barWidth = jumlah * scalePx;
-            // Minimal width agar batang tetap terlihat jika nilainya 0 atau error
-            if (barWidth == 0) barWidth = 10; 
-            
-            LinearLayout.LayoutParams barParams = new LinearLayout.LayoutParams(barWidth, heightPx);
+            GradientDrawable barBg = new GradientDrawable();
+            barBg.setShape(GradientDrawable.RECTANGLE);
+            barBg.setColor(Color.parseColor("#4B5320")); // Army Green
+            barBg.setCornerRadius(cornerPx);
+            barView.setBackground(barBg);
+
+            int barWidth = jumlahSewa * scalePx;
+            if (barWidth < dpToPx(20)) barWidth = dpToPx(20);
+
+            LinearLayout.LayoutParams barParams = new LinearLayout.LayoutParams(barWidth, barHeightPx);
             barParams.setMargins(0, 0, 0, marginPx);
             barView.setLayoutParams(barParams);
 
-            // Tambahkan ke container
             llGraphContainer.addView(tvAlat);
             llGraphContainer.addView(barView);
         }
-        
+
         if (itemCounts.isEmpty()) {
             TextView emptyText = new TextView(this);
             emptyText.setText("Belum ada data penyewaan.");
+            emptyText.setTextColor(Color.parseColor("#77786B"));
+            emptyText.setGravity(Gravity.CENTER);
             llGraphContainer.addView(emptyText);
         }
+    }
+
+    private int dpToPx(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 }
