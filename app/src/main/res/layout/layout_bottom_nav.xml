@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_bottom_nav"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="24dp"
+    android:elevation="24dp"
+    android:weightSum="5">
+
+    <LinearLayout android:id="@+id/nav_beranda" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="12dp" android:background="@drawable/bg_nav_item_active">
+        <ImageView android:id="@+id/icon_beranda" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_compass" app:tint="@color/on_primary" />
+        <TextView android:id="@+id/text_beranda" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Beranda" android:textSize="10sp" android:textStyle="bold" android:textAllCaps="true" android:textColor="@color/on_primary" android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/nav_katalog" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="12dp" android:background="?attr/selectableItemBackgroundBorderless">
+        <ImageView android:id="@+id/icon_katalog" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_gallery" app:tint="@color/outline" />
+        <TextView android:id="@+id/text_katalog" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Katalog" android:textSize="10sp" android:textStyle="bold" android:textAllCaps="true" android:textColor="@color/outline" android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/nav_sewa" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="12dp" android:background="?attr/selectableItemBackgroundBorderless">
+        <ImageView android:id="@+id/icon_sewa" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_add" app:tint="@color/outline" />
+        <TextView android:id="@+id/text_sewa" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sewa" android:textSize="10sp" android:textStyle="bold" android:textAllCaps="true" android:textColor="@color/outline" android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/nav_riwayat" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="12dp" android:background="?attr/selectableItemBackgroundBorderless">
+        <ImageView android:id="@+id/icon_riwayat" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_recent_history" app:tint="@color/outline" />
+        <TextView android:id="@+id/text_riwayat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Riwayat" android:textSize="10sp" android:textStyle="bold" android:textAllCaps="true" android:textColor="@color/outline" android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/nav_laporan" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="12dp" android:background="?attr/selectableItemBackgroundBorderless">
+        <ImageView android:id="@+id/icon_laporan" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/outline" />
+        <TextView android:id="@+id/text_laporan" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laporan" android:textSize="10sp" android:textStyle="bold" android:textAllCaps="true" android:textColor="@color/outline" android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+</LinearLayout>
