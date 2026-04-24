@@ -12,10 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
+        android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/surface_container_lowest"
         android:elevation="4dp">
+        
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="24dp">
+            <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/primary_container"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="OUTERA" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/primary_container" android:layout_marginStart="16dp" android:letterSpacing="-0.02"/>
+        </LinearLayout>
         
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laporan Statistik" android:textSize="28sp" android:textStyle="bold" android:textColor="@color/on_surface" android:letterSpacing="-0.02" />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ringkasan performa penyewaan" android:textSize="14sp" android:textColor="@color/on_surface_variant" android:layout_marginTop="4dp" />
