@@ -1,173 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface"
-    tools:context=".SewaActivity">
+    android:fitsSystemWindows="true"
+    android:background="@color/surface">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:fontFamily="sans-serif-black"
-            android:letterSpacing="-0.02"
-            android:text="Form Sewa"
-            android:textColor="@color/on_surface"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_include"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/surface_container_lowest"
-            android:padding="20dp"
-            android:layout_marginBottom="24dp">
+            android:padding="24dp">
+            
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Formulir Sewa" android:textSize="28sp" android:textStyle="bold" android:textColor="@color/on_surface" android:letterSpacing="-0.02" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lengkapi detail untuk menyewa peralatan." android:textSize="14sp" android:textColor="@color/on_surface_variant" android:layout_marginTop="4dp" android:layout_marginBottom="24dp" />
 
-            <!-- Input Nama Penyewa -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NAMA LENGKAP"
-                android:letterSpacing="0.05"
-                android:textColor="@color/outline"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/bg_bento_card" android:orientation="vertical" android:padding="24dp" android:elevation="4dp">
+                
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NAMA LENGKAP" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/on_surface_variant" android:layout_marginBottom="8dp" />
+                <EditText android:id="@+id/etNamaPenyewa" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/bg_form_input" android:padding="16dp" android:hint="Masukkan nama lengkap" android:textSize="14sp" android:textColor="@color/on_surface" android:textColorHint="@color/outline" android:layout_marginBottom="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:boxBackgroundColor="@color/surface_container_highest"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:boxStrokeColor="@color/primary">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="EMAIL" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/on_surface_variant" android:layout_marginBottom="8dp" />
+                <EditText android:id="@+id/etEmail" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/bg_form_input" android:padding="16dp" android:hint="contoh@email.com" android:inputType="textEmailAddress" android:textSize="14sp" android:textColor="@color/on_surface" android:textColorHint="@color/outline" android:layout_marginBottom="16dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNamaPenyewa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/on_surface" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PILIH PERALATAN" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/on_surface_variant" android:layout_marginBottom="8dp" />
+                <Spinner android:id="@+id/spinnerAlat" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/bg_form_input" android:padding="16dp" android:layout_marginBottom="16dp" />
 
-            <!-- Input Nama Barang -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NAMA BARANG"
-                android:letterSpacing="0.05"
-                android:textColor="@color/outline"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="JUMLAH" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/on_surface_variant" android:layout_marginBottom="8dp" />
+                <EditText android:id="@+id/etJumlah" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/bg_form_input" android:padding="16dp" android:hint="1" android:inputType="number" android:textSize="14sp" android:textColor="@color/on_surface" android:textColorHint="@color/outline" android:layout_marginBottom="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:boxBackgroundColor="@color/surface_container_highest"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:boxStrokeColor="@color/primary">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="24dp">
+                    <LinearLayout android:id="@+id/llTglPinjam" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_form_input" android:layout_marginEnd="8dp" android:gravity="center">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TGL PINJAM" android:textSize="9sp" android:textStyle="bold" android:textColor="@color/on_surface_variant" />
+                        <TextView android:id="@+id/tvTanggalPinjam" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih Tgl" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/on_surface" android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/llTglSelesai" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_form_input" android:layout_marginStart="8dp" android:gravity="center">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TGL SELESAI" android:textSize="9sp" android:textStyle="bold" android:textColor="@color/on_surface_variant" />
+                        <TextView android:id="@+id/tvTanggalSelesai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih Tgl" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/on_surface" android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNamaBarang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/on_surface" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="24dp">
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Total Biaya" android:textSize="13sp" android:textColor="@color/on_surface_variant" />
+                    <TextView android:id="@+id/tvTotalBiaya" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/primary" />
+                </LinearLayout>
 
-            <!-- Input Jumlah -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JUMLAH"
-                android:letterSpacing="0.05"
-                android:textColor="@color/outline"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:boxBackgroundColor="@color/surface_container_highest"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:boxStrokeColor="@color/primary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etJumlah"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/on_surface" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Input Tanggal -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TANGGAL SEWA"
-                android:letterSpacing="0.05"
-                android:textColor="@color/outline"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/surface_container_highest"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:boxStrokeColor="@color/primary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etTanggalSewa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="date"
-                    android:textColor="@color/on_surface" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <Button android:id="@+id/btnSubmitSewa" android:layout_width="match_parent" android:layout_height="60dp" android:backgroundTint="@color/primary_container" android:textColor="@color/on_primary" android:text="Konfirmasi Pesanan" android:textSize="15sp" android:textStyle="bold" app:cornerRadius="8dp" />
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSubmitSewa"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="@color/primary_container"
-            android:text="Sewa Sekarang"
-            android:textColor="@color/on_primary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="8dp" />
+    <include
+        android:id="@+id/bottom_nav_include"
+        layout="@layout/layout_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
